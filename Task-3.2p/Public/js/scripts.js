@@ -1,4 +1,3 @@
-// List of game cards (like slide’s kittens)
 const gameList = [
   {
     title: "Valorant",
@@ -58,7 +57,7 @@ const addCards = (items) => {
   });
 };
 
-// Document ready
+
 $(document).ready(function(){
   $('.materialboxed').materialbox();
   $('.modal').modal();
