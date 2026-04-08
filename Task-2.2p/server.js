@@ -3,12 +3,12 @@ const path = require('path');
 const app = express();
 const port = 4000;
 
-// Serve static files from 'public' folder
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Route to add two numbers (GET example)
+
 app.get('/add', (req, res) => {
-    // example: /add?num1=5&num2=3
+    
     const num1 = parseFloat(req.query.num1);
     const num2 = parseFloat(req.query.num2);
 
