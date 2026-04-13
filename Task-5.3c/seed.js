@@ -6,7 +6,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/booksdb')
 .then(() => console.log('MongoDB connected for seeding'))
 .catch(err => console.log(err));
 
-// sample data (WITH PRICE as required)
+
 const books = [
   {
     id: "b1",
