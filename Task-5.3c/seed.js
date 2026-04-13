@@ -55,7 +55,7 @@ const books = [
   }
 ];
 
-// insert data
+
 const seedDB = async () => {
   await Book.deleteMany({});
   await Book.insertMany(books);
