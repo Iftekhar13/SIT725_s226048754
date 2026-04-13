@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Books Catalog</title>
+</head>
+<body>
+
+  <h1>Books List</h1>
+  <ul id="bookList"></ul>
+
+  <script>
+    fetch('/api/books')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('bookList');
+
+        data.data.forEach(book => {
+          const li = document.createElement('li');
+          li.textContent = book.title + " by " + book.author;
+          list.appendChild(li);
+        });
+      })
+      .catch(err => console.log(err));
+  </script>
+
+</body>
+</html>
