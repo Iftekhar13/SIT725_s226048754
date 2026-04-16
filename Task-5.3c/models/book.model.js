@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// IMPORTANT: Decimal128 is required by task
+
 const bookSchema = new mongoose.Schema({
   id: String,
   title: String,
