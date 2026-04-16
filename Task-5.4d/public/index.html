@@ -24,8 +24,8 @@
           data.data.forEach(book => {
             const li = document.createElement('li');
 
-            // Convert Decimal128 price
-            const price = book.price.$numberDecimal;
+            // ✅ FIX: handle both Decimal128 and normal number
+            const price = book.price?.$numberDecimal || book.price;
 
             li.textContent = book.title + " - " + price + " AUD";
 
@@ -40,7 +40,8 @@
     function showDetails(book) {
       const details = document.getElementById('bookDetails');
 
-      const price = book.price.$numberDecimal;
+      // ✅ FIX: handle both formats here too
+      const price = book.price?.$numberDecimal || book.price;
 
       details.innerHTML = `
         <h3>Book Details</h3>
