@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Books Catalog</title>
+</head>
+<body>
+
+  <h2>Books catalogue developed by s226048754</h2>
+
+  <button onclick="getBooks()">Get All Books</button>
+
+  <ul id="bookList"></ul>
+
+  <div id="bookDetails"></div>
+
+  <script>
+    function getBooks() {
+      fetch('/api/books')
+        .then(res => res.json())
+        .then(data => {
+          const list = document.getElementById('bookList');
+          list.innerHTML = ""; // clear old list
+
+          data.data.forEach(book => {
+            const li = document.createElement('li');
+
+            // Convert Decimal128 price
+            const price = book.price.$numberDecimal;
+
+            li.textContent = book.title + " - " + price + " AUD";
+
+            // click event
+            li.onclick = () => showDetails(book);
+
+            list.appendChild(li);
+          });
+        });
+    }
+
+    function showDetails(book) {
+      const details = document.getElementById('bookDetails');
+
+      const price = book.price.$numberDecimal;
+
+      details.innerHTML = `
+        <h3>Book Details</h3>
+        <p><b>Title:</b> ${book.title}</p>
+        <p><b>Author:</b> ${book.author}</p>
+        <p><b>Genre:</b> ${book.genre}</p>
+        <p><b>Summary:</b> ${book.summary}</p>
+        <p><b>Price (AUD):</b> ${price}</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
