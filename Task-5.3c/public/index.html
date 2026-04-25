@@ -19,7 +19,7 @@
         .then(res => res.json())
         .then(data => {
           const list = document.getElementById('bookList');
-          list.innerHTML = ""; // clear old list
+          list.innerHTML = ""; 
 
           data.data.forEach(book => {
             const li = document.createElement('li');
