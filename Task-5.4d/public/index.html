@@ -19,12 +19,12 @@
         .then(res => res.json())
         .then(data => {
           const list = document.getElementById('bookList');
-          list.innerHTML = ""; // clear old list
+          list.innerHTML = "";
 
           data.data.forEach(book => {
             const li = document.createElement('li');
 
-            // ✅ FIX: handle both Decimal128 and normal number
+            
             const price = book.price?.$numberDecimal || book.price;
 
             li.textContent = book.title + " - " + price + " AUD";
@@ -40,7 +40,7 @@
     function showDetails(book) {
       const details = document.getElementById('bookDetails');
 
-      // ✅ FIX: handle both formats here too
+      
       const price = book.price?.$numberDecimal || book.price;
 
       details.innerHTML = `

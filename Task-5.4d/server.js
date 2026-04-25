@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-app.use(express.json()); // ✅ FIX (IMPORTANT)
+app.use(express.json()); 
 
 // Import route file
 const booksRoutes = require('./routes/books.routes');
