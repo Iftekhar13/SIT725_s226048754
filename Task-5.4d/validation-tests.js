@@ -278,6 +278,66 @@ async function run() {
     body: { ...makeValidUpdate(), price: "invalid-price" },
     tags: ["UPDATE_FAIL", "TYPE"]
   });
+
+  await test({
+  id: "T12",
+  name: "Price boundary (zero value)",
+  method: "POST",
+  path: createPath,
+  expected: 400,
+  body: { ...makeValidBook(`b${Date.now()}`), price: "0" },
+  tags: ["CREATE_FAIL", "BOUNDARY"]
+});
+
+await test({
+  id: "T13",
+  name: "Summary validation (too short)",
+  method: "POST",
+  path: createPath,
+  expected: 400,
+  body: { ...makeValidBook(`b${Date.now()}`), summary: "short" },
+  tags: ["CREATE_FAIL", "LENGTH"]
+});
+
+await test({
+  id: "T14",
+  name: "Author validation (too short)",
+  method: "POST",
+  path: createPath,
+  expected: 400,
+  body: { ...makeValidBook(`b${Date.now()}`), author: "Ab" },
+  tags: ["CREATE_FAIL", "LENGTH"]
+});
+
+await test({
+  id: "T15",
+  name: "Update non-existing book",
+  method: "PUT",
+  path: `${API_BASE}/invalid-id-999`,
+  expected: 404,
+  body: makeValidUpdate(),
+  tags: ["UPDATE_FAIL"]
+});
+
+await test({
+  id: "T16",
+  name: "Valid update",
+  method: "PUT",
+  path: updatePath(uniqueId),
+  expected: 200,
+  body: makeValidUpdate(),
+  tags: []
+});
+
+await test({
+  id: "T17",
+  name: "Non-integer year",
+  method: "POST",
+  path: createPath,
+  expected: 400,
+  body: { ...makeValidBook(`b${Date.now()}`), year: 2026.5 },
+  tags: ["CREATE_FAIL", "TYPE"]
+});
   //
   // Each test must include appropriate tags.
   //

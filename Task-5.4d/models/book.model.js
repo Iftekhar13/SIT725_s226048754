@@ -26,7 +26,11 @@ const bookSchema = new mongoose.Schema({
     type: Number,
     required: true,
     min: 1800,
-    max: 2026
+    max: new Date().getFullYear(),
+    validate: {
+      validator: Number.isInteger,
+      message: "Year must be an integer"
+    }
   },
 
   genre: {
@@ -41,10 +45,15 @@ const bookSchema = new mongoose.Schema({
   },
 
   price: {
-    type: Number,
+    type: mongoose.Schema.Types.Decimal128,
     required: true,
-    min: 0
-  }
+    validate: {
+      validator: function (v) {
+        return parseFloat(v.toString()) > 0;
+      },
+      message: "Price must be greater than 0"
+    }
+}
 
 });
 

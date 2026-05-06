@@ -108,7 +108,6 @@ exports.updateBook = async (req, res) => {
       });
     }
 
-    // ✅ FIX FOR T11 (PRICE TYPE VALIDATION)
     if (req.body.price !== undefined && isNaN(Number(req.body.price))) {
       return res.status(400).json({
         message: "Price must be a valid number"
