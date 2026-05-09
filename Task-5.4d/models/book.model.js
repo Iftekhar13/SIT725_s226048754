@@ -53,7 +53,7 @@ const bookSchema = new mongoose.Schema({
       },
       message: "Price must be greater than 0"
     }
-}
+  }
 
 });
 

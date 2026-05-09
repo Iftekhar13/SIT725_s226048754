@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Study Room Status</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Live Study Room Status</h1>
+
+    <button id="studyBtn">📘 Studying</button>
+    <button id="breakBtn">☕ Break</button>
+    <button id="awayBtn">😴 Away</button>
+
+    <h2>Status Counts</h2>
+
+    <p>📘 Studying: <span id="studyCount">0</span></p>
+    <p>☕ Break: <span id="breakCount">0</span></p>
+    <p>😴 Away: <span id="awayCount">0</span></p>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
