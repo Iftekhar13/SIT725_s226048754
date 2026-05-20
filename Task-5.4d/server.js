@@ -13,6 +13,9 @@ app.use('/api/books', booksRoutes);
 
 app.use(express.static('public'));
 
+app.get('/api/integrity-check42', (req, res) => {
+  res.status(204).send();
+});
 // Root route
 app.get('/', (req, res) => {
   res.send('Welcome to the Books Catalog Home Page!');
